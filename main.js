@@ -53,8 +53,8 @@ document.querySelector('.buttons').onclick = (event) => {
         if (b === '') b = a;
         switch(sign) {
             case "+": a = (+a) + (+b); break;
-            case "-": a = (a - b).toFixed(5); break;
-            case "X": a = (a * b).toFixed(5); break;
+            case "-": a = Math.floor((a - b) * 100)/100; break;
+            case "X": a = Math.floor((a * b) * 100)/100; break;
             case "/": 
                 if (b === '0') {
                     out.textContent = 'Помилка!'
@@ -63,13 +63,13 @@ document.querySelector('.buttons').onclick = (event) => {
                     sign = '';
                     return;
                 }
-                    a = (a / b).toFixed(5); break;
+                    a = Math.floor((a / b)*100) / 100; break;
             case "+/-":
                 if(a > 0 || a < 0 || a == 0 ) {
                     a *= -1;
                 }
                 break;
-            case "%": a = (a * (b / 100)).toFixed(5); break;
+            case "%": a =  Math.floor((a * (b / 100))*100) / 100 ; break;
         }
         finish = true;
         out.textContent = a;
